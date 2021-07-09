@@ -1,5 +1,9 @@
 # #CSV_Reader_Bank
+import csv
+import os
 
+#NOTE: need to be in Pybank file on terminal command line
+budget_data = os.path.join(".", "Resources-Bank", "budget_data.csv")
 
 #-------------------------
 #Print Header
@@ -7,9 +11,8 @@ print("Financial Analysis")
 print ("-----------------------")
 #---------------------------
 
-
 #-------------------
-#print out the file with context - not required
+#print out the file with context - this is not required, just for reference
 import csv
 with open ("budget_data.csv") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
@@ -19,16 +22,14 @@ with open ("budget_data.csv") as csv_file:
         print (f"{row[0]} is the date and {row[1]} is the profit or loss")  
 #--------------
 
-
 #-------------
 #print out the total number of records
 file = open("budget_data.csv")
 reader = csv. reader(file)
 total_months= len(list(reader))
 total_months = total_months - 1
-print("Total months: " + str(total_months))   
+print("Total Months: " + str(total_months))   
 #--------------
-
 
 #-------------
 #print out the total
@@ -38,8 +39,8 @@ with open ("budget_data.csv") as csv_file:
     total = 0
     for row in file:
         total += float(row[1])
-        #format the outcome as currency
-print ("Total: " + str(total)) 
+        total1 = "${:,.2f}".format(total)
+print ("Total: " + str(total1)) 
 #--------------------
 
 #-------------
@@ -58,20 +59,17 @@ with open ("budget_data.csv", 'r') as csv_file:
 	        difference.append(int(value[1]) - int(past))
         past = value[1]
 
-print (sum(difference)/len(difference))
+average = (sum(difference)/len(difference))
+average1 = "${:,.2f}".format(average)
+print ("Average Change: " + str(average1))
 #----------------
-
 
 #---------
 #print out the highest change but doesn't have the month 
 highest = max(difference) 
 highest2 = "${:,.2f}".format(highest)
 print (f"Greatest Increase in Profits: " + highest2)
-#maxpos = difference.index(highest)
-#maxpos2 = maxpos + 1
-#print(maxpos2)
 #------------
-
 
 #------------
 #print out the lowest change but doesn't have the month 
@@ -83,7 +81,6 @@ print (f"Greatest Decrease in Profits: " + lowest2)
 #print(minpos1)
 #-----------------------
 
-
 #-----------------------
 #write to a text tile but doesn't have the months 
 with open('readme.txt', 'w') as f:
@@ -91,12 +88,12 @@ with open('readme.txt', 'w') as f:
     f.write("\n")
     f.write("---------------------")
     f.write("\n")
-    f.write("Total months: " + str(total_months))  
+    f.write("Total Months: " + str(total_months))  
     f.write("\n")
     f.write("Total: " + str(total1))
     f.write("\n")
-    f.write("Average change: " + str(averagechange2))
+    f.write("Average Change: " + str(average1))
     f.write("\n")
-    f.write("Greatest increase in profits: " + str(highest2)) # need to add date
+    f.write("Greatest Increase in Profits: " + str(highest2)) # need to add date
     f.write("\n")
-    f.write("Greatest decrease in profits: " + str(lowest2)) #need to add date
+    f.write("Greatest Decrease in Profits: " + str(lowest2)) #need to add date
