@@ -1,4 +1,4 @@
-#tpolltest.py
+#tpolltest2.py
 #3million lines, smaller file to test
 
 import csv
